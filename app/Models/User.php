@@ -42,4 +42,42 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+
+    public function shippingInfos()
+    {
+        return $this->hasMany(ShippingInfo::class, 'user_id', 'id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class, 'user_id', 'id');
+    }
+
+    public function productReviews()
+    {
+        return $this->hasMany(ProductReview::class, 'user_id', 'id');
+    }
+
+    public function newsComments()
+    {
+        return $this->hasMany(NewsComment::class, 'user_id', 'id');
+    }
+
+    public function socialLogins()
+    {
+        return $this->hasMany(SocialLogin::class, 'user_id', 'id');
+    }
+
+    public function adminLogs()
+    {
+        return $this->hasMany(AdminLog::class, 'admin_id', 'id');
+    }
 }
+
+
