@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+    protected $table = 'CDSyncs_news';
+
+    protected $fillable = [
+        'title',
+        'content',
+        'category_id',
+    ];
+
+    public $timestamps = true;
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');

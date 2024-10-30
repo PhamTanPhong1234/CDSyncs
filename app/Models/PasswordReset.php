@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class PasswordReset extends Model
 {
     use HasFactory;
+    protected $table = 'CDSyncs_password_resets';
+
+    protected $fillable = [
+        'email',
+        'token',
+    ];
+
+    public $timestamps = false;
 }

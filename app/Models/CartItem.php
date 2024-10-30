@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends Model
 {
     use HasFactory;
+    protected $table = 'CDSyncs_cart_items';
+
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'quantity',
+    ];
+
+    public $timestamps = true;
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
