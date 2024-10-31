@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::prefix('api/')->group(function () {
-    
+    // Tạo route trong đây cho dễ quản lý nghe
 });
