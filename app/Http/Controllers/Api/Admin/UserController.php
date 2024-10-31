@@ -36,23 +36,48 @@ class UserController extends Controller
             'username' => 'required|string|max:255',
             'password' => 'required|string|min:8',
             'email' => 'required|string|email|max:255|unique:cdsyncs_users',
-            
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],[
+            'username.required' => 'Tên người dùng không được bỏ trống.',
+            'username.string' => 'Tên người dùng phải là một chuỗi ký tự.',
+            'username.max' => 'Tên người dùng không được vượt quá 255 ký tự.',
+            'password.required' => 'Mật khẩu không được bỏ trống.',
+            'password.string' => 'Mật khẩu phải là một chuỗi ký tự.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
+            'email.required' => 'Email không được bỏ trống.',
+            'email.string' => 'Email phải là một chuỗi ký tự.',
+            'email.email' => 'Email phải là một địa chỉ email hợp lệ.',
+            'email.max' => 'Email không được vượt quá 255 ký tự.',
+            'email.unique' => 'Email đã tồn tại trong hệ thống.',
+            'image.image' => 'Tệp phải là một hình ảnh.',
+            'image.mimes' => 'Hình ảnh phải có định dạng là jpeg, png, jpg, gif, hoặc svg.',
+            'image.max' => 'Hình ảnh không được vượt quá 2048 kilobytes.',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        // Tạo người dùng mới
+    
+        // Lưu ảnh nếu c
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public'); // Lưu ảnh vào thư mục 'images' trong 'storage/app/public'
+        }else{
+            $imagePath ='images\avatar.jpg';
+        }
+        // Tạo người dùng mới với đường dẫn ảnh
         $user = User::create([
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'email' => $request->email,
             'social_id' => $request->social_id,
             'role' => $request->role,
+            'image' => $imagePath, // Lưu đường dẫn ảnh vào cơ sở dữ liệu
         ]);
-
+    
         return response()->json($user, 201); // Trả về người dùng mới với mã trạng thái 201
     }
+    
 
     /**
      * Display the specified resource.
