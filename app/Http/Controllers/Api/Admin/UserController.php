@@ -58,7 +58,6 @@ class UserController extends Controller
             return response()->json($validator->errors(), 400);
         }
     
-        // Lưu ảnh nếu c
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imagePath = $image->store('images', 'public'); // Lưu ảnh vào thư mục 'images' trong 'storage/app/public'
@@ -83,8 +82,9 @@ class UserController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        
+    {   
+        $data = User::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -98,10 +98,58 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Tìm người dùng theo ID
+        $user = User::find($id);
+        
+        // Nếu không tìm thấy người dùng, trả về lỗi 404
+        if (!$user) {
+            return response()->json(['message' => 'Người dùng không tồn tại.'], 404);
+        }
+    
+        // Xác thực dữ liệu
+        $validator = Validator::make($request->all(), [
+            'username' => 'sometimes|string|max:255',
+            'password' => 'sometimes|string|min:8',
+            'email' => 'sometimes|string|email|max:255|unique:cdsyncs_users,email,' . $id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'username.string' => 'Tên người dùng phải là một chuỗi ký tự.',
+            'username.max' => 'Tên người dùng không được vượt quá 255 ký tự.',
+            'password.string' => 'Mật khẩu phải là một chuỗi ký tự.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
+            'email.string' => 'Email phải là một chuỗi ký tự.',
+            'email.email' => 'Email phải là một địa chỉ email hợp lệ.',
+            'email.max' => 'Email không được vượt quá 255 ký tự.',
+            'email.unique' => 'Email đã tồn tại trong hệ thống.',
+            'image.image' => 'Tệp phải là một hình ảnh.',
+            'image.mimes' => 'Hình ảnh phải có định dạng là jpeg, png, jpg, gif, hoặc svg.',
+            'image.max' => 'Hình ảnh không được vượt quá 2048 kilobytes.',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+    
+        // Kiểm tra và lưu ảnh nếu có
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public'); // Lưu ảnh vào thư mục 'images' trong 'storage/app/public'
+            $user->image = $imagePath; // Cập nhật đường dẫn ảnh
+        }
+    
+        // Cập nhật các thông tin khác
+        $user->username = $request->username ?? $user->username;
+        $user->password = $request->password ? bcrypt($request->password) : $user->password;
+        $user->email = $request->email ?? $user->email;
+        $user->social_id = $request->social_id ?? $user->social_id;
+        $user->role = $request->role ?? $user->role;
+        $user->save();
+    
+        return response()->json($user, 200); // Trả về người dùng đã cập nhật với mã trạng thái 200
     }
+    
 
     /**
      * Remove the specified resource from storage.

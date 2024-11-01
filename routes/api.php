@@ -25,3 +25,4 @@ Route::prefix('/users')->group(function () {
     Route::put('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'update']); // Cập nhật thông tin người dùng
     Route::delete('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
 });
+    
