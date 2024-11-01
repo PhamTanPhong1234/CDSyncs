@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // return view("/* view tạo */")
     }
 
     /**
@@ -92,8 +92,15 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['message' => 'Người dùng không tồn tại.'], 404);
+        }
+        
+        // Trả về view với thông tin người dùng
+        // return view('/* View nhận api/user */', compact('user'));
     }
+    
 
     /**
      * Update the specified resource in storage.
