@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('api/')->group(function () {
     // Tạo route trong đây cho dễ quản lý nghe
 });
+
+Route::resource('products', ProductController::class);
+
