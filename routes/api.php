@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\OrderController;
 use App\Http\Controllers\Api\Admin\OrderItemController;
+use App\Http\Controllers\Api\Admin\ProductController;
+use App\Http\Controllers\Api\Admin\PostController;
 
+// use App\Http\Controllers\Api\Admin\UserController
 /*
 |----------------------------------------------------------------------
 | API Routes
@@ -33,3 +36,21 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route cho các mục đơn hàng
     Route::apiResource('order-items', OrderItemController::class);
 });
+Route::prefix('/users')->group(function () {
+    // Tạo route trong đây cho dễ quản lý nghe
+    Route::get('/', [App\Http\Controllers\Api\Admin\UserController::class, 'index']); // Lấy danh sách người dùng
+    Route::post('/', [App\Http\Controllers\Api\Admin\UserController::class, 'store']); // Tạo người dùng mới
+    Route::get('/edit/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'edit']); // Lấy thông tin một người dùng hiển thị để sửa
+    Route::get('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'show']); // Lấy thông tin một người dùng cụ thể
+    Route::put('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'update']); // Cập nhật thông tin người dùng
+    Route::delete('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
+});
+
+Route::resource('products', ProductController::class);
+
+
+
+
+
+Route::apiResource('posts', PostController::class);
+Route::resource('products', ProductController::class);
