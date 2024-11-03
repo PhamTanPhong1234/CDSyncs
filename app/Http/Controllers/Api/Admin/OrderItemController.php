@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class OrderItemController extends Controller
 {
@@ -18,12 +20,34 @@ class OrderItemController extends Controller
     // Tạo mục đơn hàng mới
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'order_id' => 'required|exists:cdsyncs_orders,id',
-            'product_id' => 'required|exists:products,id',
+            'product_id' => 'required|exists:cdsyncs_products,id',
             'quantity' => 'required|integer|min:1',
             'price' => 'required|numeric',
+        ], [
+            'order_id.required' => 'Trường order_id là bắt buộc.',
+            'order_id.exists' => 'Order không tồn tại trong hệ thống.',
+            
+            'product_id.required' => 'Trường product_id là bắt buộc.',
+            'product_id.exists' => 'Sản phẩm không tồn tại trong hệ thống.',
+            
+            'quantity.required' => 'Vui lòng nhập số lượng.',
+            'quantity.integer' => 'Số lượng phải là một số nguyên.',
+            'quantity.min' => 'Số lượng phải lớn hơn hoặc bằng 1.',
+            
+            'price.required' => 'Vui lòng nhập giá sản phẩm.',
+            'price.numeric' => 'Giá sản phẩm phải là một số.',
         ]);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+        
+        // Xử lý tiếp nếu không có lỗi...
+        
 
         $orderItem = OrderItem::create($request->all());
 

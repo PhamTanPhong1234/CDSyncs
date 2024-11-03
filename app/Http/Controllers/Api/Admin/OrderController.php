@@ -37,9 +37,17 @@ class OrderController extends Controller
     public function update(Request $request, $id) {
         // Kiểm tra dữ liệu đầu vào
         $validator = Validator::make($request->all(), [
-            'user_id' => 'sometimes|required|exists:users,id', // Kiểm tra user_id nếu có
+            'user_id' => 'sometimes|required|exists:CDSyncs_users,id', // Kiểm tra user_id nếu có
             'total_amount' => 'sometimes|required|numeric|min:0', // Kiểm tra total_amount nếu có
             'status' => 'sometimes|nullable|string|in:pending,processed,shipped,delivered', // Kiểm tra status nếu có
+        ], [
+            'user_id.required' => 'User ID là bắt buộc.',
+            'user_id.exists' => 'User ID không tồn tại trong hệ thống.',
+            'total_amount.required' => 'Tổng số tiền là bắt buộc.',
+            'total_amount.numeric' => 'Tổng số tiền phải là một số.',
+            'total_amount.min' => 'Tổng số tiền phải lớn hơn hoặc bằng 0.',
+            'status.string' => 'Trạng thái phải là một chuỗi ký tự.',
+            'status.in' => 'Trạng thái phải thuộc một trong các giá trị: pending, processed, shipped, delivered.',
         ]);
 
         if ($validator->fails()) {
