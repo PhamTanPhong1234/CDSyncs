@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
+
 // use App\Http\Controllers\Api\Admin\UserController
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,4 @@ Route::resource('products', ProductController::class);
 
 
 Route::apiResource('posts', PostController::class);
+Route::resource('products', ProductController::class);
