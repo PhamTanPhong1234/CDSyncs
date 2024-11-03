@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Api\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +61,7 @@ class UserController extends Controller
             $image = $request->file('image');
             $imagePath = $image->store('images', 'public'); // Lưu ảnh vào thư mục 'images' trong 'storage/app/public'
         }else{
-            $imagePath ='images\avatar.jpg';
+            $imagePath ='images/avatar.jpg';
         }
         // Tạo người dùng mới với đường dẫn ảnh
         $user = User::create([
