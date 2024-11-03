@@ -17,10 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table='cdsyncs_users';
     protected $fillable = [
         'username',
         'password',
         'email',
+        'image',
         'social_id',
         'role',
     ];
