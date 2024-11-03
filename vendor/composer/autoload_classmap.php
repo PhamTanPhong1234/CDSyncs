@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Api\\Admin\\ProductController' => $baseDir . '/app/Http/Controllers/Api/Admin/ProductController.php',
     'App\\Http\\Controllers\\Api\\Admin\\UserController' => $baseDir . '/app/Http/Controllers/Api/Admin/UserController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
@@ -151,11 +152,8 @@ return array(
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\CategoriesTableSeeder' => $baseDir . '/database/seeders/CategoriesTableSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
-<<<<<<< HEAD
     'Database\\Seeders\\ProductsTableSeeder' => $baseDir . '/database/seeders/ProductsTableSeeder.php',
-=======
     'Database\\Seeders\\UsersTableSeeder' => $baseDir . '/database/seeders/UsersTableSeeder.php',
->>>>>>> babee69d67dca2fb83a6c8cbe078ddaaa96a1a11
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
     'DateException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
     'DateInvalidOperationException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
