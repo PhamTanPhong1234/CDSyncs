@@ -15,6 +15,7 @@ class Album extends Model
     // Các thuộc tính có thể được gán theo cách mass-assignable
     protected $fillable = [
         'title',
+        'image',
         'artist_id',
     ];
 
