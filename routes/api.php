@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\AlbumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\OrderController;
@@ -50,6 +51,7 @@ Route::prefix('/users')->group(function () {
 Route::resource('products', ProductController::class);
 Route::resource('news_categories', NewsCategoryController::class);
 Route::apiResource('posts', PostController::class);
+Route::apiResource('albums', AlbumController::class );
 
 
 
