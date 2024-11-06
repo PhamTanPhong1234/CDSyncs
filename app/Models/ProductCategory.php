@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class ProductCategory extends Model
 {
     use HasFactory;
-    protected $table = 'CDSyncs_categories';
+    protected $table = 'CDSyncs_product_categories';
 
     protected $fillable = [
         'name',
         'description',
     ];
     public $timestamps = true;
-    public function news()
+
+    public function products()
     {
-        return $this->hasMany(News::class, 'category_id', 'id');
+        return $this->hasMany(Product::class, 'category_id', 'id');
     }
 }
