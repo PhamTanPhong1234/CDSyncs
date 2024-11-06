@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Admin\OrderItemController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
+use App\Http\Controllers\Api\Admin\ProductReviewController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -50,6 +51,7 @@ Route::prefix('/users')->group(function () {
 Route::resource('products', ProductController::class);
 Route::resource('news_categories', NewsCategoryController::class);
 Route::apiResource('posts', PostController::class);
+Route::apiResource('reviews', ProductReviewController::class);
 
 
 
