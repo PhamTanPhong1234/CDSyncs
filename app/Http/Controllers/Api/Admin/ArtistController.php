@@ -72,7 +72,26 @@ class ArtistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $artist = Artist::find('id');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'bio'  => 'nullable|string',
+        ], [
+            'name.required' => 'Tên là bắt buộc.',
+            'name.string'   => 'Tên phải là một chuỗi ký tự.',
+            'name.max'      => 'Tên không được vượt quá 255 ký tự.',
+            'bio.string'    => 'Thông tin cá nhân phải là một chuỗi ký tự.',
+        ]);
+        $artist = $artist::update([
+            'name' => $request->name,
+            'bio' =>$request->bio
+        ]);
+
+        // Trả về phản hồi dưới dạng JSON
+        return response()->json([
+            'message' => 'Sửa thông tin nghệ sĩ thành công!',
+            'artist' => $artist,
+        ], 201); // Mã trạng thái HTTP 201 - Created
     }
 
     /**
