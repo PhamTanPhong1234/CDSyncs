@@ -21,6 +21,9 @@ class CommentController extends Controller
             'user_id' => 'required|integer',
             'news_id' => 'required|integer',
             'comment' => 'required|string',
+        ], [
+            'comment.required' => 'Bình luận là bắt buộc.',
+            'comment.string' => 'Bình luận phải là một chuỗi ký tự.',
         ]);
 
         $newsComment = NewsComment::create($validatedData);
