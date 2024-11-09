@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
 use App\Http\Controllers\Api\Admin\ArtistController;
 use App\Http\Controllers\Api\Admin\ProductReviewController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\VoucherController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -55,6 +57,8 @@ Route::apiResource('posts', PostController::class);
 Route::resource('artist', ArtistController::class);
 Route::apiResource('reviews', ProductReviewController::class);
 
+Route::apiResource('promotions', PromotionController::class);
+Route::apiResource('vouchers', VoucherController::class);
 
 
 
