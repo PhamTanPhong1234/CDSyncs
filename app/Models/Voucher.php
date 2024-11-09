@@ -17,6 +17,8 @@ class Voucher extends Model
         'code',
         'discount',
         'expiration_date',
+        'is_active',
+        'usage_limit',
     ];
 
     // Kiểm tra voucher còn hạn hay không
