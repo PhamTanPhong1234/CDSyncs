@@ -9,8 +9,8 @@ use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
 use App\Http\Controllers\Api\Admin\ArtistController;
 use App\Http\Controllers\Api\Admin\ProductReviewController;
-use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\Api\Admin\PromotionController;
+use App\Http\Controllers\Api\Admin\VoucherController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
