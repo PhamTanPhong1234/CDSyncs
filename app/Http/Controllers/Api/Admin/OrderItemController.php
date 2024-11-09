@@ -83,6 +83,7 @@ class OrderItemController extends Controller
         $orderItem->delete();
 
         return response()->json(['message' => 'Xóa đơn hàng thành công'], 200);
+        return response()->json(['message' => 'Xóa sản phẩm thành công !'], 200);
     }
 }
 
