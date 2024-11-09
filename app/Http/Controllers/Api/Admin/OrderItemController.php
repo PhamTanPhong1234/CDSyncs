@@ -81,7 +81,6 @@ class OrderItemController extends Controller
     {
         $orderItem = OrderItem::findOrFail($id);
         $orderItem->delete();
-
         return response()->json(['message' => 'Xóa sản phẩm thành công !'], 200);
     }
 }
