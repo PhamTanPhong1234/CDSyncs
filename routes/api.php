@@ -2,14 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\OrderController;
-use App\Http\Controllers\Api\Admin\ArtistController;
-use App\Http\Controllers\Api\Admin\CommentController;
-use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\OrderItemController;
+use App\Http\Controllers\Api\Admin\ProductController;
+use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
+use App\Http\Controllers\Api\Admin\ArtistController;
 use App\Http\Controllers\Api\Admin\ProductReviewController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\VoucherController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -55,8 +56,10 @@ Route::resource('news_categories', NewsCategoryController::class);
 Route::apiResource('posts', PostController::class);
 Route::resource('artist', ArtistController::class);
 Route::apiResource('reviews', ProductReviewController::class);
-Route::resource('comments', CommentController::class);
 
+Route::apiResource('promotions', PromotionController::class);
+Route::apiResource('vouchers', VoucherController::class);
+Route::post('vouchers/redeem/{code}', [VoucherController::class, 'redeem']);
 
 
 
