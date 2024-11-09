@@ -11,7 +11,7 @@ class VoucherController extends Controller
     // Lấy tất cả các voucher
     public function index()
     {
-        return Voucher::all();
+        return response()->json(Voucher::all()); 
     }
 
     // Tạo mới voucher

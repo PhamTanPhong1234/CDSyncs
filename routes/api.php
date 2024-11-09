@@ -59,6 +59,7 @@ Route::apiResource('reviews', ProductReviewController::class);
 
 Route::apiResource('promotions', PromotionController::class);
 Route::apiResource('vouchers', VoucherController::class);
+Route::post('vouchers/redeem/{code}', [VoucherController::class, 'redeem']);
 
 
 
