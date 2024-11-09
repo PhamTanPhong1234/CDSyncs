@@ -18,10 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('album_id'); // Trường album_id
             $table->unsignedBigInteger('artist_id'); // Trường artist_id
             $table->string('image')->nullable()->comment('Đường dẫn ảnh'); // Thêm trường image
-            $table->timestamps(); // Tạo các trường created_at và updated_at
-
+            $table->timestamps(); // Tạo các trường created_at và updated_a
             // Định nghĩa khóa ngoại
-            $table->foreign('album_id')->references('id')->on('CDSyncs_album')->onDelete('cascade');
+            $table->foreign('album_id')->references('id')->on('CDSyncs_album_artist')->onDelete('cascade');
             $table->foreign('artist_id')->references('id')->on('CDSyncs_artists')->onDelete('cascade');
         });
     }
