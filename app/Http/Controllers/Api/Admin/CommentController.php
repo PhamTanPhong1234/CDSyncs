@@ -64,11 +64,11 @@ class CommentController extends Controller
         $newsComment = NewsComment::find($id);
 
         if (!$newsComment) {
-            return response()->json(['message' => 'Comment not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Có lỗi xảy ra!'], Response::HTTP_NOT_FOUND);
         }
 
         $newsComment->delete();
 
-        return response()->json(['message' => 'Comment deleted successfully'], Response::HTTP_NO_CONTENT);
+        return response()->json(['message' => 'Xóa bình luận thành công'], Response::HTTP_NO_CONTENT);
     }
 }

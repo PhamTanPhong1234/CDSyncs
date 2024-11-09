@@ -72,10 +72,10 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if (!$post) {
-            return response()->json(['message' => 'Post not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Có lỗi xảy ra '], Response::HTTP_NOT_FOUND);
         }
 
         $post->delete();
-        return response()->json(['message' => 'Post deleted'], Response::HTTP_OK);
+        return response()->json(['message' => 'Xóa tin thành công'], Response::HTTP_OK);
     }
 }

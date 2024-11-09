@@ -42,6 +42,6 @@ class PromotionController extends Controller
         $promotion = Promotion::findOrFail($id);
         $promotion->delete();
 
-        return response()->json(['message' => 'Promotion đã xóa thành công']);
+        return response()->json(['message' => 'Quảng cáo đã được xóa thành công']);
     }
 }
