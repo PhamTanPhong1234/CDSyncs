@@ -72,6 +72,4 @@ class AlbumController extends Controller
         $album->delete();
         return response()->json(['message' => 'Album deleted'], 200);
     }
-
-
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Admin\OrderItemController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
+use App\Http\Controllers\Api\Interface\AuthController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -46,6 +47,18 @@ Route::prefix('/users')->group(function () {
     Route::get('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'show']); // Lấy thông tin một người dùng cụ thể
     Route::put('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'update']); // Cập nhật thông tin người dùng
     Route::delete('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
+});
+
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
 
 Route::resource('products', ProductController::class);
