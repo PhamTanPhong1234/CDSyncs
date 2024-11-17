@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\OrderController;
 use App\Http\Controllers\Api\Admin\OrderItemController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
+use App\Http\Controllers\Api\Admin\UpdateUserController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -54,3 +55,7 @@ Route::resource('products', ProductController::class);
 
 Route::apiResource('posts', PostController::class);
 Route::resource('products', ProductController::class);
+
+
+//UpdateUser
+Route::put('/user/update', [UpdateUserController::class, 'updateProfile']);
