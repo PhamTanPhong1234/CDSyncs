@@ -8,7 +8,10 @@ use App\Http\Controllers\Api\Admin\OrderItemController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
-use App\Http\Controllers\Api\Interface\AuthController;
+use App\Http\Controllers\Api\Interface\RegisterController;
+use App\Http\Controllers\Api\Interface\LoginController;
+use App\Http\Controllers\Api\Interface\ForgotPasswordController;
+
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
