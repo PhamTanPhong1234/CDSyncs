@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\AlbumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\OrderController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\Api\Admin\PromotionController;
 use App\Http\Controllers\Api\Admin\VoucherController;
 use App\Http\Controllers\Api\Interface\SearchController;
 use App\Http\Controllers\Api\Admin\UpdateUserController;
+use App\Http\Controllers\Api\Interface\RegisterController;
+use App\Http\Controllers\Api\Interface\LoginController;
+use App\Http\Controllers\Api\Interface\ForgotPasswordController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -55,6 +59,7 @@ Route::prefix('/users')->group(function () {
 
 
 
+
 //UpdateUser
 Route::put('/user/update', [UpdateUserController::class, 'updateProfile']);
 Route::resource('artist', ArtistController::class);
@@ -69,5 +74,21 @@ Route::apiResource('search', SearchController::class);
 Route::resource('products', ProductController::class);
 Route::resource('news_categories', NewsCategoryController::class);
 Route::apiResource('posts', PostController::class);
+Route::apiResource('albums', AlbumController::class );
+
+
+
+
 Route::resource('products', ProductController::class);
 
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+});
