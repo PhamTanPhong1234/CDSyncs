@@ -26,7 +26,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'User registered successfully!', 'user' => $user], 201);
+        return response()->json(['message' => 'Đăng kí người dùng thành công!', 'user' => $user], 201);
     }
 
 
@@ -38,10 +38,10 @@ class AuthController extends Controller
             $user = Auth::user();
             $token = $user->createToken('authToken')->plainTextToken;
 
-            return response()->json(['message' => 'Login successful!', 'token' => $token, 'user' => $user]);
+            return response()->json(['message' => 'Đăng nhập thành công!', 'token' => $token, 'user' => $user]);
         }
 
-        return response()->json(['message' => 'Invalid email or password.'], 401);
+        return response()->json(['message' => 'Email hoặc mật khẩu không đúng !.'], 401);
     }
 
 
@@ -53,9 +53,9 @@ class AuthController extends Controller
         $status = Password::sendResetLink($request->only('email'));
 
         if ($status === Password::RESET_LINK_SENT) {
-            return response()->json(['message' => 'Reset password link sent!']);
+            return response()->json(['message' => 'Reset mật khẩu thành công!']);
         }
 
-        return response()->json(['message' => 'Unable to send reset password link.'], 500);
+        return response()->json(['message' => 'Không thể gửi tin nhắn.'], 500);
     }
 }
