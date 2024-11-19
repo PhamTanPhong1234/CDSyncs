@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('CDSyncs_album', function (Blueprint $table) {
             $table->id(); // Trường id tự động tăng
             $table->string('title'); // Tên album
+            $table->string('image')->nullable()->comment('Đường dẫn ảnh'); // Thêm trường image
             $table->unsignedBigInteger('artist_id'); // Trường artist_id
             $table->timestamps(); // Các trường created_at và updated_at
 

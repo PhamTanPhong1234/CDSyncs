@@ -6,6 +6,12 @@ use App\Http\Controllers\Api\Admin\OrderController;
 use App\Http\Controllers\Api\Admin\OrderItemController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
+use App\Http\Controllers\Api\Admin\NewsCategoryController;
+use App\Http\Controllers\Api\Admin\ArtistController;
+use App\Http\Controllers\Api\Admin\ProductReviewController;
+use App\Http\Controllers\Api\Admin\PromotionController;
+use App\Http\Controllers\Api\Admin\VoucherController;
+use App\Http\Controllers\Api\Interface\SearchController;
 use App\Http\Controllers\Api\Admin\UpdateUserController;
 
 // use App\Http\Controllers\Api\Admin\UserController
@@ -47,15 +53,21 @@ Route::prefix('/users')->group(function () {
     Route::delete('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
 });
 
-Route::resource('products', ProductController::class);
-
-
-
-
-
-Route::apiResource('posts', PostController::class);
-Route::resource('products', ProductController::class);
 
 
 //UpdateUser
 Route::put('/user/update', [UpdateUserController::class, 'updateProfile']);
+Route::resource('artist', ArtistController::class);
+Route::apiResource('reviews', ProductReviewController::class);
+
+Route::apiResource('promotions', PromotionController::class);
+Route::apiResource('vouchers', VoucherController::class);
+Route::post('vouchers/redeem/{code}', [VoucherController::class, 'redeem']);
+Route::apiResource('search', SearchController::class);
+
+
+Route::resource('products', ProductController::class);
+Route::resource('news_categories', NewsCategoryController::class);
+Route::apiResource('posts', PostController::class);
+Route::resource('products', ProductController::class);
+

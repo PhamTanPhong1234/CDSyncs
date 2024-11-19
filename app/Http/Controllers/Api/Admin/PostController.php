@@ -59,7 +59,21 @@ class PostController extends Controller
             'content' => 'sometimes|required|string',
             'author' => 'sometimes|required|string|max:100',
             'status' => 'in:draft,published'
+        ], [
+            'title.required' => 'Tiêu đề là bắt buộc.',
+            'title.string' => 'Tiêu đề phải là một chuỗi ký tự.',
+            'title.max' => 'Tiêu đề không được vượt quá 255 ký tự.',
+            
+            'content.required' => 'Nội dung là bắt buộc.',
+            'content.string' => 'Nội dung phải là một chuỗi ký tự.',
+            
+            'author.required' => 'Tác giả là bắt buộc.',
+            'author.string' => 'Tác giả phải là một chuỗi ký tự.',
+            'author.max' => 'Tên tác giả không được vượt quá 100 ký tự.',
+            
+            'status.in' => 'Trạng thái chỉ có thể là "draft" hoặc "published".',
         ]);
+        
 
         // Cập nhật bài viết
         $post->update($validatedData);
@@ -72,10 +86,10 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if (!$post) {
-            return response()->json(['message' => 'Post not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Không tìm thấy tin !'], Response::HTTP_NOT_FOUND);
         }
 
         $post->delete();
-        return response()->json(['message' => 'Post deleted'], Response::HTTP_OK);
+        return response()->json(['message' => 'Tin đã được xóa!'], Response::HTTP_OK);
     }
 }
