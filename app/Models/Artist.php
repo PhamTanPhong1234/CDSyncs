@@ -15,6 +15,7 @@ class Artist extends Model
     // Các thuộc tính có thể được gán theo cách mass-assignable
     protected $fillable = [
         'name',
+        'bio'
     ];
 
     // Định nghĩa mối quan hệ với bảng `CDSyncs_album`

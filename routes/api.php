@@ -8,10 +8,15 @@ use App\Http\Controllers\Api\Admin\OrderItemController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\NewsCategoryController;
+use App\Http\Controllers\Api\Admin\ArtistController;
+use App\Http\Controllers\Api\Admin\ProductReviewController;
+use App\Http\Controllers\Api\Admin\PromotionController;
+use App\Http\Controllers\Api\Admin\VoucherController;
+use App\Http\Controllers\Api\Interface\SearchController;
+use App\Http\Controllers\Api\Admin\UpdateUserController;
 use App\Http\Controllers\Api\Interface\RegisterController;
 use App\Http\Controllers\Api\Interface\LoginController;
 use App\Http\Controllers\Api\Interface\ForgotPasswordController;
-
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -52,6 +57,30 @@ Route::prefix('/users')->group(function () {
     Route::delete('/{id}', [App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
 });
 
+
+
+
+//UpdateUser
+Route::put('/user/update', [UpdateUserController::class, 'updateProfile']);
+Route::resource('artist', ArtistController::class);
+Route::apiResource('reviews', ProductReviewController::class);
+
+Route::apiResource('promotions', PromotionController::class);
+Route::apiResource('vouchers', VoucherController::class);
+Route::post('vouchers/redeem/{code}', [VoucherController::class, 'redeem']);
+Route::apiResource('search', SearchController::class);
+
+
+Route::resource('products', ProductController::class);
+Route::resource('news_categories', NewsCategoryController::class);
+Route::apiResource('posts', PostController::class);
+Route::apiResource('albums', AlbumController::class );
+
+
+
+
+Route::resource('products', ProductController::class);
+
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
@@ -63,13 +92,3 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 });
-
-Route::resource('products', ProductController::class);
-Route::resource('news_categories', NewsCategoryController::class);
-Route::apiResource('posts', PostController::class);
-Route::apiResource('albums', AlbumController::class );
-
-
-
-
-

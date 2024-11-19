@@ -10,7 +10,7 @@ class Album extends Model
     use HasFactory;
 
     // Tên bảng tương ứng trong cơ sở dữ liệu
-    protected $table = 'CDSyncs_album';
+    protected $table = 'CDSyncs_album_artists';
 
     // Các thuộc tính có thể được gán theo cách mass-assignable
     protected $fillable = [
