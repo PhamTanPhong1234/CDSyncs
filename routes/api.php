@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\Admin\ArtistController;
 use App\Http\Controllers\Api\Admin\ProductReviewController;
 use App\Http\Controllers\Api\Admin\PromotionController;
 use App\Http\Controllers\Api\Admin\VoucherController;
+use App\Http\Controllers\Api\Interface\SearchController;
 
 // use App\Http\Controllers\Api\Admin\UserController
 /*
@@ -60,7 +61,7 @@ Route::apiResource('reviews', ProductReviewController::class);
 Route::apiResource('promotions', PromotionController::class);
 Route::apiResource('vouchers', VoucherController::class);
 Route::post('vouchers/redeem/{code}', [VoucherController::class, 'redeem']);
-
+Route::apiResource('search', SearchController::class);
 
 
 
